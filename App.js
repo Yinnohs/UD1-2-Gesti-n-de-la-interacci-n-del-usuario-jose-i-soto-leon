@@ -1,25 +1,34 @@
-import React  from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-import {SafeAreaProvider} from 'react-native-safe-area-context'
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+
+import { Provider,Portal } from 'react-native-paper';
+import { ShoppingButton } from './components/floating-action-button/ShoppingButton';
+
+import { ShoppingListView } from './views';
+
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  const Drawer = createDrawerNavigator()
-
-
   return (
-    <SafeAreaProvider>
+    <Provider>
       <NavigationContainer>
-        <Drawer.Navigator>
-        <Drawer.Screen name="About" component={<View></View>} />
-        <Drawer.Screen name="ShoppingList" component={<View></View>} />
-        </Drawer.Navigator>
+        <Stack.Navigator>
+          <Stack.Screen
+          name='home'
+          component={ShoppingListView}
+          options={
+            {headerShown:false}
+          }
+          />
+
+          </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style='auto'/>
-    </SafeAreaProvider>
+    </Provider>
+
   );
 }
+
 
