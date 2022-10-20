@@ -1,0 +1,1 @@
+export  {ShoppingListView} from './ShoppingList.view'
