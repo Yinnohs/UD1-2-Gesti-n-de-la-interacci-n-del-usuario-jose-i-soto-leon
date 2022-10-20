@@ -8,7 +8,9 @@ export default function Main (){
     return(
         <SafeAreaProvider>
             <PaperProvider>
-                <App/>
+                
+                    <App/>
+                
             </PaperProvider>
         </SafeAreaProvider>
     )
