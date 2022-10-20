@@ -7,7 +7,7 @@ export const useAppContext = ()=>{
     return useAppContext(AppContext)
 }
 
-export const appContextProvider = ()=>{
+export const AppContextProvider = ()=>{
     const [shopItems, setShopItems] = useState([])
     const globalValue = []
 
