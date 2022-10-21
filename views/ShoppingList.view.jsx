@@ -1,34 +1,33 @@
 import { StyleSheet, View } from "react-native"
 import { ShoppingList } from "../components/shopping-list/ShoppingList"
 import { ShoppingButton } from "../components/floating-action-button/ShoppingButton" 
-import { Portal } from "react-native-paper"
 import {useIsFocused} from '@react-navigation/native'
-import { CreateModal } from "../components/create-modal/CreateModal"
-import { useState } from "react"
+import { Title } from "react-native-paper"
+import { AppContext } from "../data/context"
+import { useContext } from "react"
+import { theme } from "../colors/colors"
 
 
 
-export const ShoppingListView = ()=>{
+export const ShoppingListView = ({navigation})=>{
     const isVisible = useIsFocused()
-    const [visible, setVisible] = useState(false);
-    const showModal = () => setVisible(true);
-    const hideModal = () => setVisible(false);
-
+    const [shopArticles,setShopArticles] = useContext(AppContext)
     return(
             <View style={styles.viewContainer}>    
-                <ShoppingList data={[]}/>
-                <ShoppingButton isvisible={isVisible} action={showModal}/>
-                <CreateModal hideModal={hideModal} isVisible={visible}/>
+                <Title style={{color:theme.primaryColor, fontSize:30}} >Articulos en el Carrito</Title>
+                <ShoppingList data={shopArticles}/>
+                <ShoppingButton isvisible={isVisible} action={()=> navigation.navigate('create') } icon={"plus"}/>
             </View>  
     )
 }
 
 const styles = StyleSheet.create({
     viewContainer: {
-        flexDirection:"column",
+        paddingTop:100,
+        flexDirection:'column',
         flex:1,
-        justifyContent:"center",
-        alignItems:"center",
-        backgroundColor: "#282C34"
+        justifyContent:'space-evenly',
+        alignItems:'center',
+        backgroundColor: theme.backgroundViewColor
     }
 })
