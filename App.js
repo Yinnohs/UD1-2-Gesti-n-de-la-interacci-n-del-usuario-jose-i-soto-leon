@@ -4,8 +4,9 @@ import React from 'react';
 
 import { Provider,Portal } from 'react-native-paper';
 import { ShoppingButton } from './components/floating-action-button/ShoppingButton';
+import { AppContextProvider } from './data/context';
 
-import { ShoppingListView } from './views';
+import { CreateItemView, ShoppingListView } from './views';
 
 
 const Stack = createNativeStackNavigator()
@@ -13,21 +14,29 @@ const Stack = createNativeStackNavigator()
 export default function App() {
 
   return (
-    <Provider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-          name='home'
-          component={ShoppingListView}
-          options={
-            {headerShown:false}
-          }
-          />
+    <AppContextProvider>
+      <Provider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+            name='home'
+            component={ShoppingListView}
+            options={
+              {headerShown:false}
+            }
+            />
+            <Stack.Screen
+            name='create'
+            component={CreateItemView}
+            options={
+              {headerShown:false}
+            }
+            />
 
-          </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-
+            </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </AppContextProvider>
   );
 }
 

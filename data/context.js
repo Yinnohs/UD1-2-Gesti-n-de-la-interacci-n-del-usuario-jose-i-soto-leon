@@ -1,25 +1,15 @@
 import { useState, useContext,createContext } from "react"
+import { mockData } from "../utils"
 
 
-const AppContext = createContext(undefined)
+export const AppContext = createContext([[], () => {}])
 
-export const useAppContext = ()=>{
-    return useAppContext(AppContext)
-}
 
-export const AppContextProvider = ()=>{
-    const [shopItems, setShopItems] = useState([])
-    const globalValue = []
-
-    const AppContextObject = {
-        globalValue: {globalValue},
-        shopItemsValue:{
-            shopItems,setShopItems
-        }
-    }
+export const AppContextProvider = (props)=>{
+    const [shopArticles, setShopArticles] = useState([])
 
     return(
-        <AppContext.Provider value={AppContextObject}>
+        <AppContext.Provider value={[shopArticles, setShopArticles]}>
             {props.children}
         </AppContext.Provider>
     )
