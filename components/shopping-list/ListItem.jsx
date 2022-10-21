@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, PixelRatio } from "react-native"
 import { Avatar, Card, Title, IconButton } from "react-native-paper"
+import { theme } from "../../colors/colors"
 
 const defineImage = (type)=> {
     const icons = {
@@ -23,8 +24,8 @@ export const ListItem= ({id, name, quantity, bougth, type})=>{
         subtitleStyle={styles.subTittle}
         title={name}
         subtitle={`Cantidad: ${quantity} `}
-        left={(props)=>  <Avatar.Icon {...props} size={46} style={styles.icon} iconColor="#948098" icon={defineImage(type)}/>}
-        right={(props) => <IconButton icon="delete" size={36} iconColor="#93296c" onPress={() => {}} />}
+        left={(props)=>  <Avatar.Icon {...props} size={46} style={styles.icon} iconColor={theme.terciaryColor} icon={defineImage(type)}/>}
+        right={(props) => <IconButton icon="delete" size={36} iconColor={theme.primaryColor} onPress={() => {}} />}
     />
     )
 }
@@ -32,22 +33,22 @@ export const ListItem= ({id, name, quantity, bougth, type})=>{
 
 const styles = StyleSheet.create({
     card:{
-        width:"80%",
+        width:"90%",
         marginVertical: PixelRatio.getPixelSizeForLayoutSize(1.2),
         borderWidth:0.5,
         borderBottomWidth:2.2,
         borderRadius:5,
-        borderColor:"#444752",
-        backgroundColor: "#313742"
+        borderColor:theme.shadowBorderColor,
+        backgroundColor: theme.backgroundColor
     },
     title:{
-        color:"#bf358f",
+        color:theme.primaryColor,
     },
     subTittle:{
-        color:"#93296c"
+        color:theme.secondaryColor
     },  
     icon:{
-        backgroundColor:"#bf358f"
+        backgroundColor:theme.primaryColor
     }
 })
 
