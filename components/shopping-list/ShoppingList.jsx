@@ -4,7 +4,10 @@ import { ListItem } from "./ListItem"
 
 export const ShoppingList = ({data})=>{
     return(
-        <ScrollView  contentContainerStyle={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          showsHorizontalScrollIndicator={false}
+          >
             {data.map(({id, name, quantity, bougth, type})=>{
                 return <ListItem 
                         id={id}
@@ -22,7 +25,7 @@ export const ShoppingList = ({data})=>{
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
+        width:'98%',
         flexDirection:"column",
         justifyContent: "center",
         alignItems: "center"
