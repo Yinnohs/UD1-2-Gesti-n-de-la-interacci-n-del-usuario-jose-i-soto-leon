@@ -2,15 +2,14 @@ import { AppRegistry } from 'react-native'
 import {PaperProvider} from 'react-native-paper'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import App from './App'
+import { AppContextProvider } from './data/context'
 
 
 export default function Main (){
     return(
         <SafeAreaProvider>
             <PaperProvider>
-                
-                    <App/>
-                
+                <App/>
             </PaperProvider>
         </SafeAreaProvider>
     )
