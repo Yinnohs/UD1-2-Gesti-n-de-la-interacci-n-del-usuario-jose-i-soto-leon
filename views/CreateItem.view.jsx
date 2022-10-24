@@ -4,11 +4,13 @@ import { StyleSheet, View } from "react-native"
 import { Title, Button } from "react-native-paper"
 import { theme } from "../colors/colors"
 import { ShoppingButton } from "../components/floating-action-button/ShoppingButton"
-import { SelectImputForm } from "../components/inputs/SelectImputForm"
-import { TextImputForm } from "../components/inputs/TextInputForm"
 import { generateUuid } from "../utils"
 import { AppContext } from "../data/context"
-
+import { 
+        NumericalIntegerInput,
+        SelectImputForm,
+        TextImputForm
+    } from '../components/inputs'
 
 
 export const CreateItemView = ({navigation})=>{
@@ -20,7 +22,7 @@ export const CreateItemView = ({navigation})=>{
 
     const handleSubmitData = ()=>{
 
-        if(!isAllInputsNotDefault()){
+        if(!areAllInputsNotDefaultValue()){
             alert("todos los campos deben tener un valor")
             return
         }
@@ -52,15 +54,19 @@ export const CreateItemView = ({navigation})=>{
         navigation.navigate("home") 
     }
 
-    const isAllInputsNotDefault = ()=>{
-        if(name === "" || selectedType == "" || quantity === 0 ){
+    const areAllInputsNotDefaultValue = ()=>{
+        if(
+            name === "" 
+            || selectedType === "" 
+            || quantity === 0
+        ){
             return false
         }
         return true
     }
 
     const renderButton = ()=>{
-        if(isAllInputsNotDefault()){
+        if(areAllInputsNotDefaultValue()){
             return<Button 
                 mode="elevated" 
                 buttonColor={theme.primaryColor}
@@ -80,7 +86,7 @@ export const CreateItemView = ({navigation})=>{
             <View style={styles.inputContainer}>
                 <TextImputForm label="Nombre Producto" value={name} onChange={setName}/>
                 <SelectImputForm placeholder={"Tipo de Articulo"} setSelected={setSelectedType}/>
-                
+                <NumericalIntegerInput numberValue={quantity} setNumberValue={setQuantity}/>
 
             </View>
             <View style={styles.buttonContainer}>
