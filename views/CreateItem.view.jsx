@@ -6,7 +6,6 @@ import { theme } from "../colors/colors"
 import { ShoppingButton } from "../components/floating-action-button/ShoppingButton"
 import { SelectImputForm } from "../components/inputs/SelectImputForm"
 import { TextImputForm } from "../components/inputs/TextInputForm"
-import NumericInput from "react-native-numeric-input"
 import { generateUuid } from "../utils"
 import { AppContext } from "../data/context"
 
@@ -81,20 +80,7 @@ export const CreateItemView = ({navigation})=>{
             <View style={styles.inputContainer}>
                 <TextImputForm label="Nombre Producto" value={name} onChange={setName}/>
                 <SelectImputForm placeholder={"Tipo de Articulo"} setSelected={setSelectedType}/>
-                <NumericInput 
-                borderColor={theme.secondaryColor} 
-                textColor={theme.underlineText} 
-                rounded={true} 
-                maxValue={100} 
-                minValue={0}
-                valueType="integer"
-                value={quantity}
-                leftButtonBackgroundColor={theme.inputBackground}
-                rightButtonBackgroundColor={theme.inputBackground}
-                iconStyle={{color:theme.underlineText}}
-                containerStyle={{paddingHorizontal:20,height:50, backgroundColor:theme.inputBackground,}} 
-                onChange={(value)=> setQuantity(value)}
-                />
+                
 
             </View>
             <View style={styles.buttonContainer}>
