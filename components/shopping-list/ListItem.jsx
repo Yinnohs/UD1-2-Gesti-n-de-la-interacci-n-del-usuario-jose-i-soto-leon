@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet, PixelRatio } from "react-native"
-import { Avatar, Card, Title, IconButton } from "react-native-paper"
+import { useContext } from "react"
+import { StyleSheet, PixelRatio } from "react-native"
+import { Avatar, Card, IconButton } from "react-native-paper"
 import { theme } from "../../colors/colors"
+import { AppContext } from "../../data/context"
 
 const defineImage = (type)=> {
     const icons = {
@@ -18,15 +20,37 @@ const defineImage = (type)=> {
 
 
 export const ListItem= ({id, name, quantity, bougth, type})=>{
+    const [shopArticles, setShopArticles] = useContext(AppContext)
+    const handleCheked = (id)=>{
+        const checkArticle = shopArticles.map((article)=>{
+            if(article.id === id){
+                article.name = article.name
+                article.bougth = true
+            }
+            return article
+        })
+
+        setShopArticles(checkArticle)
+    }
+
     return(
-    <Card.Title style={styles.card}
-        titleStyle={styles.title}
-        subtitleStyle={styles.subTittle}
-        title={name}
-        subtitle={`Cantidad: ${quantity} `}
-        left={(props)=>  <Avatar.Icon {...props} size={46} style={styles.icon} iconColor={theme.terciaryColor} icon={defineImage(type)}/>}
-        right={(props) => <IconButton icon="delete" size={36} iconColor={theme.primaryColor} onPress={() => {}} />}
-    />
+        bougth === false 
+        ?<Card.Title style={styles.card}
+            titleStyle={styles.title}
+            subtitleStyle={styles.subTittle}
+            title={name}
+            subtitle={`Cantidad: ${quantity} `}
+            left={(props)=>  <Avatar.Icon {...props} size={46} style={styles.icon} iconColor={theme.terciaryColor} icon={defineImage(type)}/>}
+            right={() => <IconButton icon="check" size={36} iconColor={theme.primaryColor} borderless={true} onPress={()=> handleCheked(id)} />}
+        />
+        :<Card.Title style={styles.cardDisabled}
+            titleStyle={styles.title}
+            subtitleStyle={styles.subTittle}
+            title={name}
+            subtitle={`Cantidad: ${quantity} `}
+            left={(props)=>  <Avatar.Icon {...props} size={46} style={styles.iconDisabled} iconColor={theme.underlineText} color={theme.underlineText} icon={defineImage(type)}/>}
+            right={() => <IconButton icon="close" size={36} iconColor={theme.terciaryColor} borderless={true} />}
+        />
     )
 }
 
@@ -49,6 +73,16 @@ const styles = StyleSheet.create({
     },  
     icon:{
         backgroundColor:theme.primaryColor
+    },
+    cardDisabled:{
+        width:"90%",
+        marginVertical: PixelRatio.getPixelSizeForLayoutSize(1.2),
+        borderWidth:0,
+        borderRadius:5,
+        backgroundColor: theme.backgroundViewColor
+    },
+    iconDisabled:{
+        backgroundColor:theme.disableColor
     }
 })
 
