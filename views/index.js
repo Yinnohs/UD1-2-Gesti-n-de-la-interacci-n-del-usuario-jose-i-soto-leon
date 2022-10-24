@@ -1,2 +1,2 @@
 export  {ShoppingListView} from './ShoppingList.view'
-export {CreateItemView} from './CreateItemView'
+export {CreateItemView} from './CreateItem.view'
