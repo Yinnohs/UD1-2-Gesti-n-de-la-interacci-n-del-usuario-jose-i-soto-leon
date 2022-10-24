@@ -5,5 +5,7 @@ export const theme={
     backgroundColor:"#313742",
     shadowBorderColor:"#444752",
     inputBackground: "#181818",
-    backgroundViewColor: "#282C34"
+    backgroundViewColor: "#282C34",
+    underlineText: "#444",
+    disableColor: "#382734"
 }
