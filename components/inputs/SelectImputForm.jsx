@@ -29,7 +29,7 @@ export const SelectImputForm = ({placeholder,setSelected })=>{
 const styles = StyleSheet.create({
     select:{
         width:'90%',
-        color:'#444',
+        color:theme.underlineText,
         fontSize: 20,
         borderWidth:0,
         borderBottomWidth:0.5,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor:theme.inputBackground
     },
     dropText:{
-        color:"#444",
+        color:theme.underlineText,
         fontSize: 20,
 
     },

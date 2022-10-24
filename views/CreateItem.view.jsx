@@ -28,7 +28,7 @@ export const CreateItemView = ({navigation})=>{
 
         const newArticle ={
             id: generateUuid(),
-            name: name,
+            name: name.trim(),
             quantity: quantity,
             bougth: false,
             type: selectedType
@@ -45,6 +45,12 @@ export const CreateItemView = ({navigation})=>{
         setName("")
         setSelectedType("")
         setQuantity(0)
+        
+    }
+
+    const handleReset = ()=>{
+        resetValues()
+        navigation.navigate("home") 
     }
 
     const isAllInputsNotDefault = ()=>{
@@ -66,7 +72,6 @@ export const CreateItemView = ({navigation})=>{
         mode="elevated" 
         buttonColor={theme.primaryColor}
         textColor="#FFF" 
-        onPress={()=> console.log("disabled")} 
         disabled={true}>Enviar</Button>
     }
     
@@ -78,7 +83,7 @@ export const CreateItemView = ({navigation})=>{
                 <SelectImputForm placeholder={"Tipo de Articulo"} setSelected={setSelectedType}/>
                 <NumericInput 
                 borderColor={theme.secondaryColor} 
-                textColor="#444" 
+                textColor={theme.underlineText} 
                 rounded={true} 
                 maxValue={100} 
                 minValue={0}
@@ -86,7 +91,7 @@ export const CreateItemView = ({navigation})=>{
                 value={quantity}
                 leftButtonBackgroundColor={theme.inputBackground}
                 rightButtonBackgroundColor={theme.inputBackground}
-                iconStyle={{color:"#444"}}
+                iconStyle={{color:theme.underlineText}}
                 containerStyle={{paddingHorizontal:20,height:50, backgroundColor:theme.inputBackground,}} 
                 onChange={(value)=> setQuantity(value)}
                 />
@@ -97,7 +102,7 @@ export const CreateItemView = ({navigation})=>{
                 mode="elevated" 
                 buttonColor={theme.terciaryColor} 
                 textColor="#FFF"
-                onPress={resetValues}
+                onPress={handleReset}
                 >Cancelar</Button>
                {renderButton()}
             </View>
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
     },
     inputContainer:{
         width:'100%',
-        height:'50%',
+        height:'60%',
         display:'flex',
         flexDirection:'column',
         justifyContent:'space-evenly',

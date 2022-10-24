@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { StyleSheet } from "react-native"
 import { Portal, FAB, } from "react-native-paper"
 import { theme } from "../../colors/colors"
