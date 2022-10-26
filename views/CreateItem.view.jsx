@@ -1,6 +1,6 @@
 import { useIsFocused } from "@react-navigation/native"
 import { useContext, useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { PixelRatio, StyleSheet, View } from "react-native"
 import { Title, Button } from "react-native-paper"
 import { theme } from "../colors/colors"
 import { ShoppingButton } from "../components/floating-action-button/ShoppingButton"
@@ -68,15 +68,19 @@ export const CreateItemView = ({navigation})=>{
     const renderButton = ()=>{
         if(areAllInputsNotDefaultValue()){
             return<Button 
-                mode="elevated" 
+                mode="elevated"
                 buttonColor={theme.primaryColor}
                 textColor="#FFF" 
+                elevation={4} 
+                style={styles.button}
                 onPress={handleSubmitData}>Enviar</Button>
         }
-        return<Button 
+        return<Button
+        
         mode="elevated" 
         buttonColor={theme.primaryColor}
         textColor="#FFF" 
+        style={styles.button} 
         disabled={true}>Enviar</Button>
     }
     
@@ -94,6 +98,7 @@ export const CreateItemView = ({navigation})=>{
                 mode="elevated" 
                 buttonColor={theme.terciaryColor} 
                 textColor="#FFF"
+                style={styles.button}
                 onPress={handleReset}
                 >Cancelar</Button>
                {renderButton()}
@@ -130,6 +135,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-evenly',
         alignItems:'center'
+    },
+    button:{
+        padding: PixelRatio.getPixelSizeForLayoutSize(2.5),
+        fontSize: 20
     }
 
 })
