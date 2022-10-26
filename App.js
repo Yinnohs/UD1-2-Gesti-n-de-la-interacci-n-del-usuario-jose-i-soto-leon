@@ -1,11 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-
-import { Provider,Portal } from 'react-native-paper';
-import { ShoppingButton } from './components/floating-action-button/ShoppingButton';
+import { Provider, } from 'react-native-paper';
 import { AppContextProvider } from './data/context';
-
 import { CreateItemView, ShoppingListView } from './views';
 
 
